@@ -51,20 +51,18 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
 //        
 //    }
     @Override
-    public void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.cors();
-        httpSecurity.csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/auth/login").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/persona//all").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/skill//all").permitAll()
+    protected void configure(HttpSecurity http) throws Exception {
+        http.cors().and().csrf().disable().authorizeRequests()
+                .antMatchers("/auth/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/persona/all").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/skill/all").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/proyecto/all").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/explaboral/all").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/education/all").permitAll()
                 .anyRequest().authenticated()
-                .and().sessionManagement()
-                .sessionCreationPolicy(STATELESS);
-        httpSecurity.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+                .and().exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
     }
 

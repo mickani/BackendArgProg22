@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.proyectoFinal</groupId>
-    <artifactId>portfolio-final</artifactId>
+    <artifactId>portfolio-heroku</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>portfolio-final</name>
+    <name>portfolio-heroku</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>11</java.version>
