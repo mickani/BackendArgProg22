@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/persona")//Me ahorra escribir a todos los endpoint, la url.
 public class PersonaController {
 
@@ -66,63 +66,5 @@ public class PersonaController {
         personaService.savePersona(perso);
         return new ResponseEntity(HttpStatus.OK);
     }
-
-    /*@PutMapping("/editar/{id}")
-    public PersonaModel editPersona(@PathVariable Long id,
-            @RequestParam("nombre") String nuevoNombre,
-            @RequestParam("apellido") String nuevoApellido,
-            @RequestParam("titulo") String nuevoTitulo,
-            @RequestParam("descripcion") String nuevoDescripcion,
-            @RequestParam("image_perfil") String nuevoImagePerfil,
-            @RequestParam("banner") String nuevoBanner) {
-        PersonaModel persona = personaService.findPersona(id);
-
-        persona.setNombre(nuevoNombre);
-        persona.setApellido(nuevoApellido);
-        persona.setTitulo(nuevoTitulo);
-        persona.setDescripcion(nuevoDescripcion);
-        persona.setImage_perfil(nuevoImagePerfil);
-        persona.setBanner(nuevoBanner);
-
-        personaService.savePersona(persona);
-        return persona;
-    }*/
     
-
-    /*@GetMapping("/all")
-    public ArrayList<PersonaModel>getAllPersons(){
-        return personaService.getAllPersons();
-    }
-    //....................................................
-    @GetMapping("/traerid")
-    public PersonaModel findPersona(){
-        return personaService.findById((long)3);
-    }
-    //....................................................
-
-    @PostMapping("/crear")
-    public PersonaModel savePerson(@RequestBody PersonaModel persona){
-        return personaService.savePerson(persona);
-        //En Postman, para crear una Persona, no tengo q especificar el "id" xq una "persona" nueva
-        //no tiene "id", sino q se le asigna automáticamente, además me va a modificar una persina existente.
-        //Tengo q definir los demás atributos, en este caso: nombre, apellido, url_img
-    }
-    
-    @GetMapping("/query")
-    //ATENCIÓN...acá se tuvo q crear método en Repository para luego llamarlo en el Service y luego poder llamarlo acá.
-    public ArrayList<PersonaModel>getPersonaByApellido(@RequestParam ("apellido")String apellido){
-        return personaService.getPersonaByApellido(apellido);
-    }
-    
-    @DeleteMapping("/borrar/{id}")
-    public String removePerson(@PathVariable("id") Long id){
-        if (personaService.removePerson(id)){
-            return "Se eliminó a la persona con id "+id+" correctamente.";
-        }else{
-            return "La persona con id "+id+" no pudo ser eliminada.";
-        }
-    }
-    
-    
-    }*/
 }

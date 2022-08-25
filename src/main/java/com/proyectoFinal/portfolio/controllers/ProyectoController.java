@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/proyecto")
 public class ProyectoController {
     
@@ -60,48 +60,4 @@ public class ProyectoController {
         return new ResponseEntity(HttpStatus.OK);
     }
     
-    /*@PutMapping("/editar/{id}")
-    public ProyectoModel editProyecto(@PathVariable Long id,
-                                    @RequestParam("nombre") String nuevonombre,
-                                    @RequestParam("fecha") int nuevofecha,
-                                    @RequestParam("imagen") String nuevoimagen,
-                                    @RequestParam("descripcion") String nuevodescripcion,
-                                    @RequestParam("link") String nuevolink){
-        ProyectoModel proyecto = proyectoService.findProyecto(id);
-        
-        proyecto.setNombre(nuevonombre);
-        proyecto.setFecha(nuevofecha);
-        proyecto.setImagen(nuevoimagen);
-        proyecto.setDescripcion(nuevodescripcion);
-        proyecto.setLink(nuevolink);
-
-        proyectoService.saveProyecto(proyecto);
-        return proyecto;
-    }*/
-    
-    /*@GetMapping("/{id}")
-    public ProyectoModel getProyectoById(@PathVariable("id") Long id){
-        return proyectoService.getProyectoById(id);
-    }
-    
-    @GetMapping("/query")
-    public ArrayList<ProyectoModel>getProyectByNombre(@RequestParam("nombre") String nombre){
-        return proyectoService.getProyectoByNombre(nombre);
-    }
-   
-    @PutMapping("/editar/{id}")
-    public ProyectoModel editProyecto (@PathVariable("id")Long id,
-                                       @RequestParam ("nombre") String nuevoNombre,
-                                       @RequestParam ("fecha") int nuevoFecha,
-                                       @RequestParam ("descripcion") String nuevoDescripcion){
-        ProyectoModel proyecto = proyectoService.findById(id);
-        
-        proyecto.setNombre(nuevoNombre);
-        proyecto.setFecha(nuevoFecha);
-        proyecto.setDescripcion(nuevoDescripcion);
-        
-        proyectoService.saveProyecto(proyecto);
-        return proyecto;
-        
-    }*/
 }

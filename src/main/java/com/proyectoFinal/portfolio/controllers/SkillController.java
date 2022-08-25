@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/skill")
 public class SkillController {
 
@@ -64,23 +65,5 @@ public class SkillController {
         skillService.saveSkill(sk);
         return new ResponseEntity(HttpStatus.OK);
     }
-    /*@PutMapping("/editar/{id}")
-    public SkillModel editSkill(@PathVariable Long id,
-                                    @RequestParam("tipo") String nuevotipo,
-                                    @RequestParam("nombre") String nuevonombre,
-                                    @RequestParam("porcentaje") int nuevoporcentaje){
-        SkillModel skill = skillService.findSkill(id);
-        
-        skill.setTipo(nuevotipo);
-        skill.setNombre(nuevonombre);
-        skill.setPorcentaje(nuevoporcentaje);
-
-        skillService.saveSkill(skill);
-        return skill;
-    }*/
     
-    /*@GetMapping("/{id}")
-    public SkillModel getSkillById(@PathVariable("id") Long id) {
-        return skillService.getSkillById(id);
-    }*/
 }
