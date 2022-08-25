@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://portfolioargprog.web.app")
+
 @RequestMapping("/api/skill")
 public class SkillController {
 
@@ -42,18 +45,21 @@ public class SkillController {
         return skillService.getSkillByTipo(tipo);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/crear")
     public ResponseEntity createSkill(@RequestBody SkillModel skill){
         skillService.saveSkill(skill);
         return ResponseEntity.ok().body(skill);
     }
    
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/borrar/{id}")
     public ResponseEntity<?> eliminarSkill(@PathVariable("id") Long id) {
         skillService.deleteSkill(id);
         return new ResponseEntity(HttpStatus.OK);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/editar/{id}")
     public ResponseEntity<?> editSkill(@PathVariable("id") Long id, @RequestBody SkillModel skill) {
         SkillModel sk = skillService.findSkill(id);
