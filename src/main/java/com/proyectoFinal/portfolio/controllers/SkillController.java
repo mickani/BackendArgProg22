@@ -19,9 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:4200")
-@CrossOrigin(origins = "https://portfolioargprog.firebaseapp.com")
-
+@CrossOrigin(origins = "https://frontportfoliomica.web.app")
 @RequestMapping("/api/skill")
 public class SkillController {
 
@@ -40,7 +38,6 @@ public class SkillController {
     }
     
     @GetMapping("/query")
-    //ATENCIÓN...acá se tuvo q crear método en Repository para luego llamarlo en el Service y luego poder llamarlo acá.
     public List<SkillModel> getSkillByTipo(@RequestParam("tipo") String tipo) {
         return skillService.getSkillByTipo(tipo);
     }
